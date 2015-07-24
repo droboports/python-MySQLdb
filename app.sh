@@ -67,9 +67,10 @@ pushd "target/${FOLDER}"
 echo "mysql_config = ${DEPS}/bin/mysql_config" >> site.cfg
 PKG_CONFIG_PATH="${XPYTHON}/lib/pkgconfig" \
   LDFLAGS="${LDFLAGS:-} -Wl,-rpath,/mnt/DroboFS/Share/DroboApps/python2/lib -L${XPYTHON}/lib" \
-  "${XPYTHON}/bin/python" setup.py build_ext \
-  --include-dirs="${XPYTHON}/include" --library-dirs="${XPYTHON}/lib" \
-  --force build --force bdist_egg --dist-dir "${BASE}"
+  "${XPYTHON}/bin/python" setup.py \
+    build_ext --include-dirs="${XPYTHON}/include" --library-dirs="${XPYTHON}/lib" --force \
+    build --executable="/mnt/DroboFS/Share/DroboApps/python2/bin/python" --force \
+    bdist_egg --dist-dir "${BASE}"
 popd
 }
 
